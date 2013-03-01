@@ -10,27 +10,30 @@
 
 require_once('fql_request.php');
 
-class FacebookQueryLanguage{
+if(!class_exists('FacebookQueryLanguage'))
+{
+	class FacebookQueryLanguage{
 
-	private function queryThread($access_token){
+		private function queryThread($access_token){
+			
+			return thread($access_token);
+		}
 		
-		return thread($access_token);
-	}
-	
-	private function queryMessage($access_token, $query){
-	
-		return message($access_token, $query);
-	}
-	
-	public function getThread($access_token){
+		private function queryFacebookFQL($access_token, $query){
 		
-		$result = $this->queryThread($access_token);
-		return $result;
+			return fql($access_token, $query);
+		}
 		
-	}
-	public function getFacebookMessage($access_token, $query){
-		
-		$result = $this->queryMessage($access_token, $query);
-		return $result;
+		public function getThread($access_token){
+			
+			$result = $this->queryThread($access_token);
+			return $result;
+			
+		}
+		public function getFacebookFQL($access_token, $query){
+			
+			$result = $this->queryFacebookFQL($access_token, $query);
+			return $result;
+		}
 	}
 }
