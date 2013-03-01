@@ -37,3 +37,4 @@ if(!class_exists('FacebookQueryLanguage'))
 		}
 	}
 }
+?>
